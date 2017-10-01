@@ -1,3 +1,7 @@
+
+
+**Added firmware for Satan GH60 (Rev.CHN) in [`keyboard/satan`](keyboard/satan). See [`keyboard/satan/README.md`](keyboard/satan/README.md) for more information. --kaihuang201**
+
 TMK Keyboard Firmware Collection
 ================================
 This repository includes keyboard and converter firmware projects built with [`tmk_core`][tmk_core] keyboard library.
