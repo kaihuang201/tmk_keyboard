@@ -144,7 +144,7 @@ uint8_t matrix_cols(void)
 
 void matrix_init(void)
 {
-    debug_enable = true; // Uncomment to get debug messages
+    //debug_enable = true; // Uncomment to get debug messages
     //debug_matrix = true; // Print matrix state every time it changes
     //debug_mouse = true;
 

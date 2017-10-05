@@ -113,7 +113,7 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
         [6] =
         {
             {  KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_7,    KC_8,    KC_9, KC_PSLS, KC_TRNS, KC_TRNS, KC_TRNS },
-            {  KC_TRNS, KC_FN7, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_4,    KC_5,    KC_6, KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS },
+            {  KC_TRNS, KC_FN20, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_4,    KC_5,    KC_6, KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS },
             {  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_1,    KC_2,    KC_3, KC_PPLS, KC_TRNS, KC_TRNS, KC_TRNS },
             {  KC_CAPS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_0,  KC_PAST, KC_DOT,  KC_ENT, KC_TRNS, KC_TRNS },
             {  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS }
@@ -132,7 +132,7 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
         
 
     };
-    //dprintf("%d - [ %d, %d ] = %d\n\n", layer, key.row, key.col, keymaps[layer][key.row][key.col]);
+    dprintf("%d - [ %d, %d ] = %d\n\n", layer, key.row, key.col, keymaps[layer][key.row][key.col]);
     return keymaps[layer][key.row][key.col];
 }
 
