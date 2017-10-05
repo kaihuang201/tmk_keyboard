@@ -70,7 +70,9 @@ void set_led_level(uint8_t lvl)
 // LED states
 static uint8_t light_upper = 200; // breathing upper limit
 static uint8_t light_lower = 5; // breathing lower limit
-static uint16_t light_cycle = 100; // update LED light level ever light_cycle times light_lvl_exec is called
+static uint16_t light_cycle = 200; // update LED light level ever light_cycle times light_lvl_exec is called
+static uint16_t light_cycle_base = 120; // base value of light cycle
+
 static uint8_t light_cool_down = 0; // breathing cool down counter, used at lowest brightness
 static bool light_increasing = true;
 static uint8_t light_lvl = 0; // brightness
@@ -122,7 +124,7 @@ void light_lvl_exec(void)
 
     set_led_level(light_lvl);
 
-    light_cycle = 280 / light_lvl + 200;
+    light_cycle = 200 / light_lvl + light_cycle_base;
 
     dprintf("light_lvl = %d, light_cycle = %d\n", light_lvl, light_cycle);
 }
