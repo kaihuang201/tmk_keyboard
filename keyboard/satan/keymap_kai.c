@@ -90,9 +90,9 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
         [5] =
         {
             {  KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12, KC_SLEP },
-            {  KC_TRNS, KC_BTN1, KC_MS_U, KC_BTN2, KC_ACL2, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR, KC_FN10, KC_FN11,  KC_DEL },
+            {  KC_TRNS, KC_BTN1, KC_MS_U, KC_BTN2, KC_ACL2, KC_TRNS, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_FN10, KC_FN11,  KC_DEL },
             {  KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_ACL1, KC_TRNS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_SLCK, KC_FN12, KC_TRNS, KC_TRNS },
-            {  KC_TRNS, KC_BTN4, KC_BTN3, KC_BTN5, KC_ACL0, KC_TRNS, KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_TRNS, KC_TRNS, KC_TRNS },
+            {  KC_TRNS, KC_BTN4, KC_BTN3, KC_BTN5, KC_ACL0, KC_TRNS, KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_PSCR, KC_TRNS, KC_TRNS },
             {  KC_TRNS, KC_RGUI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_INS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS }
         },
 
