@@ -26,11 +26,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "util.h"
 #include "matrix.h"
+#include "backlight.h"
 
 
 #ifndef DEBOUNCE
 #   define DEBOUNCE	5
 #endif
+typedef enum BACKLIGHT_MODE_T { OFF = 0, CONST = 1, BREATH = 2 } BACKLIGHT_MODE;
+static BACKLIGHT_MODE backlightMode = OFF;
+
 static uint8_t debouncing = DEBOUNCE;
 
 /* matrix state(1:on, 0:off) */
@@ -44,7 +48,7 @@ static void select_row(uint8_t row);
 
 // Initialize the LED output pin
 // Credit @pastosai https://github.com/patosai/gh60/blob/master/src/led.c
-inline led_init(void)
+inline void led_init(void)
 {
     DDRB |= (1<<PB6);
 
@@ -56,10 +60,12 @@ inline led_init(void)
 
     OCR1B = 0;
 }
-/* to turn off
-DDRB &= ~(1<<PB6);
-PORTB |= (1<<PB6);
-*/
+
+inline void led_off(void)
+{
+    DDRB &= ~(1<<PB6);
+    PORTB |= (1<<PB6);
+}
 
 inline
 void set_led_level(uint8_t lvl)
@@ -68,10 +74,10 @@ void set_led_level(uint8_t lvl)
 }
 
 // LED states
-static uint8_t light_upper = 200; // breathing upper limit
-static uint8_t light_lower = 5; // breathing lower limit
+static const uint8_t light_upper = 200; // breathing upper limit
+static const uint8_t light_lower = 5; // breathing lower limit
+static const uint16_t light_cycle_base = 120; // base value of light cycle
 static uint16_t light_cycle = 200; // update LED light level ever light_cycle times light_lvl_exec is called
-static uint16_t light_cycle_base = 120; // base value of light cycle
 
 static uint8_t light_cool_down = 0; // breathing cool down counter, used at lowest brightness
 static bool light_increasing = true;
@@ -118,7 +124,7 @@ void light_lvl_exec(void)
 
     if (light_lvl < light_lower && !light_cool_down) {
         light_increasing = true;
-        light_cool_down = 24;
+        light_cool_down = 32;
         light_lvl = light_lower;
     }
 
@@ -127,6 +133,30 @@ void light_lvl_exec(void)
     light_cycle = 200 / light_lvl + light_cycle_base;
 
     dprintf("light_lvl = %d, light_cycle = %d\n", light_lvl, light_cycle);
+}
+
+// Called by tmk core. Declared in backlight.h
+void backlight_set(uint8_t level) 
+{
+    dprintf("backlight_set(level = %d)", level);
+    switch (level) {
+        case 0:
+            backlightMode = OFF;
+            led_off();
+            break;
+        case 1:
+            led_init();
+            backlightMode = CONST;
+            set_led_level(10);
+            break;
+        default:
+            led_init();
+            backlightMode = BREATH;
+            light_cycle = 200;
+            light_cool_down = 0;
+            light_increasing = true;
+            light_lvl = light_lower;
+    }
 }
 
 inline
@@ -151,8 +181,6 @@ void matrix_init(void)
     // initialize row and col
     unselect_rows();
     init_cols();
-
-    led_init();
 
     // initialize matrix state: all keys off
     for (uint8_t i=0; i < MATRIX_ROWS; i++) {
@@ -189,8 +217,8 @@ uint8_t matrix_scan(void)
             }
         }
     }
-
-    light_lvl_exec(); // Update LED
+    if (backlightMode == BREATH)
+        light_lvl_exec(); // Update LED
 
     return 1;
 }

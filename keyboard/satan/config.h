@@ -20,12 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
+#define VENDOR_ID       0xBEEF
 #define PRODUCT_ID      0x1111
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    geekhack
-#define PRODUCT         Onekey
-#define DESCRIPTION     t.m.k. keyboard firmware for Onekey
+#define MANUFACTURER    KH
+#define PRODUCT         Cicada
+#define DESCRIPTION     t.m.k. keyboard firmware for Cicada
 
 /* key matrix size */
 #define MATRIX_ROWS 5
@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
 
-
+#define BACKLIGHT_LEVELS 2
 
 /*
  * Feature disable options

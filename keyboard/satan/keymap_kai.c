@@ -99,20 +99,22 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
 
         /* Number pad layer
          * ,-----------------------------------------------------------.
-         * |   |   |   |   |   |   |   |  7|  8|  9|  /|  *|   |   |   |
+         * |BKL| F1| F2| F3| F4| F5| F6|  7|  8|  9|  /|   |   |   |   |
          * |-----------------------------------------------------------|
          * |     |   |   |   |   |   |   |  4|  5|  6|  -|   |   |     |
          * |-----------------------------------------------------------|
          * |      |   |   |   |   |   |   |  1|  2|  3|  +|   |        |
          * |-----------------------------------------------------------|
-         * |     |  |   |   |   |   |   |   |  0|  .|  *|ENT|      |   |
+         * |     |  |   |   |   |   |   |   |  0|  *|  .|ENT|      |   |
          * |-----------------------------------------------------------|
          * |    |    |    |                        |    |    |    |    |
          * `-----------------------------------------------------------'
+         * BKL: cycle backlight modes: off, constant, breathing
          */
+
         [6] =
         {
-            {  KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_7,    KC_8,    KC_9, KC_PSLS, KC_TRNS, KC_TRNS, KC_TRNS },
+            {  KC_FN21,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_7,    KC_8,    KC_9, KC_PSLS, KC_TRNS, KC_TRNS, KC_TRNS },
             {  KC_TRNS, KC_FN20, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_4,    KC_5,    KC_6, KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS },
             {  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_1,    KC_2,    KC_3, KC_PPLS, KC_TRNS, KC_TRNS, KC_TRNS },
             {  KC_CAPS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_0,  KC_PAST, KC_DOT,  KC_ENT, KC_TRNS, KC_TRNS },
@@ -152,6 +154,7 @@ action_t keymap_fn_to_action(uint8_t keycode)
         [12] = ACTION_DEFAULT_LAYER_SET(2),  // set workman layout
 
         [20] = ACTION_LAYER_TOGGLE(7),
+        [21] = ACTION_BACKLIGHT_STEP(),
     };
 
     return fn_actions[FN_INDEX(keycode)];

@@ -48,19 +48,24 @@ Features:
  L0 is QWERTY and L1 is Dvorak
 ```
 
-- Number pad layer activated by holding right half of the split Left Shift (ISO `\` equivalent), togglable with double tap.
+- Number pad layer activated by holding the NUM key (right half of the split Left Shift, or ISO `\` equivalent), togglable with double tap.
+- Backlight can be cycled through the following states with ``NUM + ` ``
+    + Off: no backlight
+    + Constant: constant backlight
+    + Breathing: interactive breathing backlight. Light intensity increases when keys are pressed, but gently dims down back to normal breathing when the typing stops.
 ```
  ,-----------------------------------------------------------.
- |   | F1| F2| F3| F4| F5| F6|  7|  8|  9|  /|  *|   |   |   |
+ |BKL| F1| F2| F3| F4| F5| F6|  7|  8|  9|  /|   |   |   |   |
  |-----------------------------------------------------------|
  |     |   |   |   |   |   |   |  4|  5|  6|  -|   |   |     |
  |-----------------------------------------------------------|
  |      |   |   |   |   |   |   |  1|  2|  3|  +|   |        |
  |-----------------------------------------------------------|
- |     |  |   |   |   |   |   |   |  0|  .|  *|ENT|      |   |
+ |     |  |   |   |   |   |   |   |  0|  *|  .|ENT|      |   |
  |-----------------------------------------------------------|
  |    |    |    |                        |    |    |    |    |
  `-----------------------------------------------------------'
+ BKL: cycle backlight modes: off, constant, breathing
 ```
 
 This project is a work in progress, right now, FN2(right half of the split Right Shift) is the same as FN0 except is can also toggle the function layer with double tap. But I have not decided what to use it for yet.
