@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "action_macro.h"
 #include "action_util.h"
 #include "action.h"
+#include "eeconfig.h"
 #include "hook.h"
 #include "wait.h"
 
@@ -226,6 +227,7 @@ void process_action(keyrecord_t *record)
                         case OP_BIT_XOR: default_layer_xor(bits | mask); break;
                         case OP_BIT_SET: default_layer_and(mask); default_layer_or(bits); break;
                     }
+                    eeconfig_write_default_layer(default_layer_state);
                 }
             } else {
                 /* Layer Bitwise Operation */
