@@ -25,7 +25,7 @@ The keymap is tailored to ANSI layout with split Backspace, Left Shift, and Righ
 ```
 
 Features:
-- QWERTY and Dvorak base layer selectable.
+- QWERTY, Dvorak, Workman and Carpalx QGMLWY base layer selectable.
 - CapsLock key as ESC.
 - Backslash key as Backspace.
 - CapsLock can be toggled by Num(see the keymap above) + Left Shift
@@ -39,13 +39,16 @@ Features:
  |-----------------------------------------------------------|
  |     |LMB|MUp|RMB|   |   |Hme|PgD|PgU|End|PSc| L0| L1| DEL |
  |-----------------------------------------------------------|
- |      |MLt|MDn|MRt|   |   |Lft|Dwn| Up|Rgt|SLk|   |        |
+ |      |MLt|MDn|MRt|   |   |Lft|Dwn| Up|Rgt|SLk| L2|        |
  |-----------------------------------------------------------|
- |Caps|MB4|MMB|MB5|   |   |   |WhL|WhD|WhU|WhR|   |      |   |
+ |Caps|MB4|MMB|MB5|   |   |   |WhL|WhD|WhU|WhR|   |      | L3|
  |-----------------------------------------------------------|
  |    |    |    |                        |    |    |    |    |
  `-----------------------------------------------------------'
- L0 is QWERTY and L1 is Dvorak
+ L0: QWERTY
+ L1: Dvorak
+ L2: Workman
+ L3: Carpalx QGMLWY
 ```
 
 - Number pad layer activated by holding the NUM key (right half of the split Left Shift, or ISO `\` equivalent), togglable with double tap.
