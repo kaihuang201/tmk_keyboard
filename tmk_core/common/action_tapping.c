@@ -79,6 +79,9 @@ bool process_tapping(keyrecord_t *keyp)
 {
     keyevent_t event = keyp->event;
 
+    if (IS_NOEVENT(event))
+        return;
+
     // if tapping
     if (IS_TAPPING_PRESSED()) {
         if (WITHIN_TAPPING_TERM(event)) {
