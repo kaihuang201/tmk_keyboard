@@ -33,7 +33,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define DEBOUNCE	5
 #endif
 typedef enum BACKLIGHT_MODE_T { OFF = 0, CONST = 1, BREATH = 2 } BACKLIGHT_MODE;
+typedef enum BACKLIGHT_INDICATE_T { NONE = 0, FUNCTION = 1, NUMBER = 2 } BACKLIGHT_INDICATE;
+
 static BACKLIGHT_MODE backlightMode = OFF;
+static BACKLIGHT_INDICATE backlightIndicate = NONE;
 
 static uint8_t debouncing = DEBOUNCE;
 
@@ -67,8 +70,7 @@ inline void led_off(void)
     PORTB |= (1<<PB6);
 }
 
-inline
-void set_led_level(uint8_t lvl)
+inline void set_led_level(uint8_t lvl)
 {
     OCR1B = lvl;
 }
@@ -81,6 +83,7 @@ static uint16_t light_cycle = 200; // update LED light level ever light_cycle ti
 
 static uint8_t light_cool_down = 0; // breathing cool down counter, used at lowest brightness
 static bool light_increasing = true;
+
 static uint8_t light_lvl = 0; // brightness
 
 void light_lvl_add(uint8_t x)
@@ -102,6 +105,19 @@ void light_lvl_sub(uint8_t x)
 void light_lvl_exec(void)
 {
     static uint16_t t = 0;
+
+    // Handle indicator cases
+    switch(backlightIndicate) {
+        case FUNCTION:
+            light_lvl = (light_lvl + 1) % 255;
+            set_led_level(light_lvl);
+            return;
+        case NUMBER:
+            light_lvl = (light_lvl - 1) % 255;
+            set_led_level(light_lvl);
+            return;
+    }
+
     t = (t + 1) % light_cycle;
     if (t != 0) 
         return;
@@ -152,11 +168,34 @@ void backlight_set(uint8_t level)
         default:
             led_init();
             backlightMode = BREATH;
-            light_cycle = 200;
-            light_cool_down = 0;
-            light_increasing = true;
-            light_lvl = light_lower;
     }
+}
+
+void update_led_indicate(layer_state)
+{
+    switch(layer_state) {
+        case 1 << 5: // function layer
+            led_init();
+            backlightIndicate = FUNCTION;
+            break;
+        case 1 << 6: // number pad layer
+            led_init();
+            backlightIndicate = NUMBER;
+            break;
+        default:
+            backlight_set((uint8_t)backlightMode);
+            backlightIndicate = NONE;
+    }
+}
+
+void hook_layer_change(uint32_t layer_state)
+{
+    update_led_indicate(layer_state | default_layer_state);
+}
+
+void hook_default_layer_change(uint32_t default_layer_state)
+{
+    update_led_indicate(layer_state | default_layer_state);
 }
 
 inline

@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "keymap.h"
 
-static const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* 0: Default QWERTY layer
      * ,-----------------------------------------------------------.
      * |  `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  \|Del|
@@ -99,7 +99,7 @@ static const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };  // to test: KC_CAPS, KT_BTLD, KC_A
 
-static const action_t fn_actions[] = {
+const action_t PROGMEM fn_actions[] = {
     [0] = ACTION_LAYER_MOMENTARY(2),
     [1] = ACTION_LAYER_TAP_TOGGLE(3),
     [2] = ACTION_LAYER_TAP_TOGGLE(2),
@@ -110,16 +110,3 @@ static const action_t fn_actions[] = {
     [5] = ACTION_MODS_ONESHOT(MOD_LSFT),
     [6] = ACTION_MODS_ONESHOT(MOD_RSFT)
 };
-
-
-/* translates key to keycode */
-uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
-{
-    return keymaps[(layer)][(key.row)][(key.col)];
-}
-
-/* translates Fn keycode to action */
-action_t keymap_fn_to_action(uint8_t keycode)
-{
-    return fn_actions[FN_INDEX(keycode)];
-}
