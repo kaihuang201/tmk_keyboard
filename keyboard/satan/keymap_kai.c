@@ -60,6 +60,31 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         {  KC_LCTL, KC_LGUI, KC_LALT,   KC_NO,   KC_NO,  KC_SPC,   KC_NO,   KC_NO,   KC_NO,  KC_DEL,  KC_FN0, KC_RALT,  KC_APP, KC_RCTL }
     },
 
+    /* Carpalx QFMLWY base layer
+     * ,-----------------------------------------------------------.
+     * |  `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  \|Del|
+     * |-----------------------------------------------------------|
+     * |Tab  |  Q|  F|  M|  L|  W|  Y|  F|  U|  O|  J|  [|  ]| BS  |
+     * |-----------------------------------------------------------|
+     * |Esc   |  D|  S|  T|  N|  R|  I|  A|  E|  H|  ;|  '|   Enter|
+     * |-----------------------------------------------------------|
+     * |Shift|Num|  Z|  V|  G|  C|  X|  P|  K|  ,|  .|  /|Shift|Fn2|
+     * |-----------------------------------------------------------|
+     * |Ctl | Sys| Alt|         Space          | Alt| Fn0| App| Ctl|
+     * `-----------------------------------------------------------'
+     */
+    /*
+    [1] =
+    {
+        {   KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL, KC_BSLS },
+        {   KC_TAB,    KC_Q,    KC_F,    KC_M,    KC_L,    KC_W,    KC_Y,    KC_F,    KC_U,    KC_O,    KC_J, KC_LBRC, KC_RBRC, KC_BSPC },
+        {   KC_FN3,    KC_D,    KC_S,    KC_T,    KC_N,    KC_R,    KC_I,    KC_A,    KC_E,    KC_H,  KC_SCLN, KC_QUOT,   KC_NO,  KC_ENT },
+        {   KC_FN5,  KC_FN1,    KC_Z,    KC_V,    KC_G,    KC_C,    KC_X,    KC_P,    KC_K, KC_COMM,  KC_DOT, KC_SLSH,  KC_FN2,  KC_FN6 },
+        {  KC_LCTL, KC_LGUI, KC_LALT,   KC_NO,   KC_NO,  KC_SPC,   KC_NO,   KC_NO,   KC_NO,  KC_DEL,  KC_FN0, KC_RALT,  KC_APP, KC_RCTL }
+    },
+    //*/
+
+
 
     [2] =
     /* Workman base layer */
