@@ -20,16 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6464
+#define VENDOR_ID       0xBABE
+#define PRODUCT_ID      0x1337
 #define DEVICE_VER      0x0001
 /* in python2: list(u"whatever".encode('utf-16-le')) */
 /*   at most 32 characters or the ugly hack in usb_main.c borks */
-#define MANUFACTURER "TMK"
+#define MANUFACTURER "KH"
 #define USBSTR_MANUFACTURER    'T', '\x00', 'M', '\x00', 'K', '\x00', ' ', '\x00', '\xc6', '\x00'
-#define PRODUCT "ChibiOS TMK test"
-#define USBSTR_PRODUCT         'C', '\x00', 'h', '\x00', 'i', '\x00', 'b', '\x00', 'i', '\x00', 'O', '\x00', 'S', '\x00', ' ', '\x00', 'T', '\x00', 'M', '\x00', 'K', '\x00', ' ', '\x00', 't', '\x00', 'e', '\x00', 's', '\x00', 't', '\x00'
-#define DESCRIPTION "TMK keyboard firmware over ChibiOS"
+#define PRODUCT "Cicada 60 - Split Space"
+#define USBSTR_PRODUCT         'C', '\x00', 'i', '\x00', 'c', '\x00', 'a', '\x00', 'd', '\x00', 'a', '\x00', ' ', '\x00', '6', '\x00', '0', '\x00', ' ', '\x00', '-', '\x00', ' ', '\x00', 'S', '\x00', 'p', '\x00', 'l', '\x00', 'i', '\x00', 't', '\x00', ' ', '\x00', 'S', '\x00',  'p', '\x00', 'a', '\x00', 'c', '\x00', 'e'
+#define DESCRIPTION "Cicada 60 - Split Space"
 
 /* key matrix size */
 #define MATRIX_ROWS 5
@@ -70,6 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
-#define ONESHOT_TIMEOUT 300
+#define ONESHOT_TIMEOUT 900
+#define TAPPING_TOGGLE  2
 
 #endif
