@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "matrix.h"
 #include "wait.h"
 
+#include "util.h"
+
 #ifndef DEBOUNCE
 #   define DEBOUNCE 5
 #endif
@@ -53,14 +55,6 @@ uint8_t matrix_cols(void)
     return MATRIX_COLS;
 }
 
-#define LED_ON()    do { palSetPad(TEENSY_PIN13_IOPORT, TEENSY_PIN13) ;} while (0)
-#define LED_OFF()   do { palClearPad(TEENSY_PIN13_IOPORT, TEENSY_PIN13); } while (0)
-#define LED_TGL()   do { palTogglePad(TEENSY_PIN13_IOPORT, TEENSY_PIN13); } while (0)
-
-// palSetPadMode(ioportid_t, uint8_t, iomode_t);
-// palClearPad(ioportid_t, uint8_t);
-// palReadPad(ioportid_t, uint8_t);
-
 #define PORT_COL_0  TEENSY_PIN0_IOPORT
 #define PORT_COL_1  TEENSY_PIN1_IOPORT
 #define PORT_COL_2  TEENSY_PIN2_IOPORT
@@ -75,7 +69,6 @@ uint8_t matrix_cols(void)
 #define PORT_COL_11 TEENSY_PIN11_IOPORT
 #define PORT_COL_12 TEENSY_PIN12_IOPORT
 #define PORT_COL_13 TEENSY_PIN14_IOPORT
-#define PORT_COL_14 TEENSY_PIN15_IOPORT
 
 #define PIN_COL_0  TEENSY_PIN0
 #define PIN_COL_1  TEENSY_PIN1
@@ -91,7 +84,6 @@ uint8_t matrix_cols(void)
 #define PIN_COL_11 TEENSY_PIN11
 #define PIN_COL_12 TEENSY_PIN12
 #define PIN_COL_13 TEENSY_PIN14
-#define PIN_COL_14 TEENSY_PIN15
 
 
 #define PORT_ROW_0 TEENSY_PIN21_IOPORT
@@ -119,7 +111,12 @@ void matrix_init(void)
     }
 
     //debug
-    debug_matrix = true;
+    //#define DEBUG_ACTION
+    //debug_enable = true;
+    //debug_matrix = true;
+    //debug_keyboard = true;
+    //debug_mouse = true;
+
     LED_ON();
     wait_ms(500);
     LED_OFF();
@@ -129,22 +126,22 @@ uint8_t matrix_scan(void)
 {
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
         select_row(i);
-        wait_us(30);  // without this wait read unstable value.
+        wait_us(20);  // without this wait read unstable value.
         matrix_row_t cols = read_cols();
         if (matrix_debouncing[i] != cols) {
             matrix_debouncing[i] = cols;
+#ifdef DEBUG_ACTION
             if (debouncing) {
                 debug("bounce!: "); debug_hex(debouncing); debug("\n");
             }
+#endif
             debouncing = DEBOUNCE;
         }
         clear_rows();
     }
 
     if (debouncing) {
-        if (--debouncing) {
-            wait_ms(1);
-        } else {
+        if (!(--debouncing)) {
             for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
                 matrix[i] = matrix_debouncing[i];
             }
@@ -194,7 +191,6 @@ static void  init_cols(void)
     palSetPadMode(PORT_COL_11, PIN_COL_11, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(PORT_COL_12, PIN_COL_12, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(PORT_COL_13, PIN_COL_13, PAL_MODE_INPUT_PULLUP);
-    palSetPadMode(PORT_COL_14, PIN_COL_14, PAL_MODE_INPUT_PULLUP);
 }
 
 /* Returns status of switches(1:on, 0:off) */
@@ -214,8 +210,7 @@ static matrix_row_t read_cols(void)
         ( (palReadPad(PORT_COL_10, PIN_COL_10)==PAL_HIGH) ? 0 : (1<<10)) |
         ( (palReadPad(PORT_COL_11, PIN_COL_11)==PAL_HIGH) ? 0 : (1<<11)) |
         ( (palReadPad(PORT_COL_12, PIN_COL_12)==PAL_HIGH) ? 0 : (1<<12)) |
-        ( (palReadPad(PORT_COL_13, PIN_COL_13)==PAL_HIGH) ? 0 : (1<<13)) |
-        ( (palReadPad(PORT_COL_14, PIN_COL_14)==PAL_HIGH) ? 0 : (1<<14));
+        ( (palReadPad(PORT_COL_13, PIN_COL_13)==PAL_HIGH) ? 0 : (1<<13));
 }
 
 /* Row pin configuration */

@@ -58,8 +58,11 @@ void send_keyboard_report(void) {
 #ifndef NO_ACTION_ONESHOT
     if (oneshot_mods) {
 #if (defined(ONESHOT_TIMEOUT) && (ONESHOT_TIMEOUT > 0))
-        if (TIMER_DIFF_16(timer_read(), oneshot_time) >= ONESHOT_TIMEOUT) {
-            dprintf("Oneshot: timeout\n");
+        int16_t time_now = timer_read();
+        if (TIMER_DIFF_16(time_now, oneshot_time) >= ONESHOT_TIMEOUT) {
+            dprintf(
+                "Oneshot: oneshot_time=%d,timer_read()=%d,time_diff=%d,ONESHOT_TIMEOUT=%d timeout\n",
+                oneshot_time, time_now, TIMER_DIFF_16(time_now, oneshot_time), ONESHOT_TIMEOUT);
             clear_oneshot_mods();
         }
 #endif

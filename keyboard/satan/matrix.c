@@ -75,7 +75,7 @@ void set_led_level(uint8_t lvl)
 
 // LED states
 static const uint8_t light_upper = 200; // breathing upper limit
-static const uint8_t light_lower = 5; // breathing lower limit
+static const uint8_t light_lower = 2; // breathing lower limit
 static const uint16_t light_cycle_base = 120; // base value of light cycle
 static uint16_t light_cycle = 200; // update LED light level ever light_cycle times light_lvl_exec is called
 
@@ -147,7 +147,7 @@ void backlight_set(uint8_t level)
         case 1:
             led_init();
             backlightMode = CONST;
-            set_led_level(10);
+            set_led_level(5);
             break;
         default:
             led_init();
@@ -174,9 +174,10 @@ uint8_t matrix_cols(void)
 
 void matrix_init(void)
 {
-    //debug_enable = true; // Uncomment to get debug messages
-    //debug_matrix = true; // Print matrix state every time it changes
-    //debug_mouse = true;
+    debug_enable = true; // Uncomment to get debug messages
+    debug_matrix = true; // Print matrix state every time it changes
+    debug_keyboard = true;
+    debug_mouse = true;
 
     // initialize row and col
     unselect_rows();
