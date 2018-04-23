@@ -51,7 +51,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     /* Dvorak base layer */
-    /*
+    
     [1] =
     {
         {   KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_LBRC, KC_RBRC, KC_BSLS },
@@ -75,7 +75,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |Ctl | Sys| Alt|         Space          | Alt| Fn0| App| Ctl|
      * `-----------------------------------------------------------'
      */
-    //*
+    /*
     [1] =
     {
         {   KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL, KC_BSLS },
