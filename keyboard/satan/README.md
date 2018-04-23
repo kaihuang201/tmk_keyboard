@@ -16,7 +16,7 @@ The keymap is tailored to ANSI layout with split Backspace, Left Shift, and Righ
  |-----------------------------------------------------------|
  |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]| BS  |
  |-----------------------------------------------------------|
- |Esc   |  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|   Enter|
+ |Esc/Num|  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|  Enter|
  |-----------------------------------------------------------|
  |Shift|Num|  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift|Fn2|
  |-----------------------------------------------------------|
@@ -26,9 +26,9 @@ The keymap is tailored to ANSI layout with split Backspace, Left Shift, and Righ
 
 Features:
 - QWERTY, Dvorak, Workman and Carpalx QGMLWY base layer selectable.
-- CapsLock key as ESC.
+- CapsLock key as ESC when tapped, and acts as Num modifier when held.
 - Backslash key as Backspace.
-- CapsLock can be toggled by Num(see the keymap above) + Left Shift
+- CapsLock can be toggled by holding Num(see the keymap above) + Left Shift
 - [Oneshot](../../tmk_core/doc/keymap.md#43-oneshot-modifier) Shift keys.
 - Function layer activated by holding the key to the right of the spacebar. The function layer features Vim arrow keys. Home, PgDn, PgUp, End keys intuitively arranged right above Vim arrow keys. Mouse Wheel Left, Mouse Wheel Down, Mouse Wheel Up, and Mouse Wheel Right are located right below the Vim arrow keys.
 
