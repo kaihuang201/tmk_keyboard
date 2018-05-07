@@ -1,6 +1,9 @@
 
 
-**Added firmware for Satan GH60 (Rev.CHN) in [`keyboard/satan`](keyboard/satan). See [`keyboard/satan/README.md`](keyboard/satan/README.md) for more information. --kaihuang201**
+**
+- Added firmware for Cicada 60 Split Space with teensy-lc in [`keyboard/cicada60_teensy_lc`](keyboard/cicada60_teensy_lc). See [`keyboard/cicada60_teensy_lc/README.md`](keyboard/cicada60_teensy_lc/README.md) for more information.
+- Added firmware for Satan GH60 (Rev.CHN) in [`keyboard/satan`](keyboard/satan). See [`keyboard/satan/README.md`](keyboard/satan/README.md) for more information. --kaihuang201
+**
 
 TMK Keyboard Firmware Collection
 ================================
